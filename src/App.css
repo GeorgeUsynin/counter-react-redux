@@ -1,0 +1,113 @@
+.App {
+    text-align: center;
+    background-color: rgba(42, 44, 54, 255);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter_wrapper {
+    border: solid rgba(133, 213, 236, 255) 3px;
+    border-radius: 20px;
+    width: 600px;
+    height: 400px;
+    background-color: rgba(42, 44, 54, 255);
+    margin: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.screen {
+    width: 90%;
+    height: 240px;
+    border: solid rgba(133, 213, 236, 255) 3px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.counter_value {
+    font-size: 100px;
+    font-weight: bold;
+    color: rgba(133, 213, 236, 255);
+}
+
+.buttons_wrapper {
+    display: flex;
+    width: 90%;
+    height: 90px;
+    border: solid rgba(133, 213, 236, 255) 3px;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button_wrapper > button {
+    background-color: lightskyblue;
+    color: rgba(42, 44, 54, 255);
+    font-size: 50px;
+    font-weight: bold;
+    border: solid transparent 1px;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    padding: 0 20px;
+}
+
+.error_text_view{
+    font-size: 36px;
+    font-weight: bold;
+    color: crimson;
+}
+
+.maxCount_text_view{
+    font-size: 100px;
+    font-weight: bold;
+    color: crimson;
+}
+
+button.disabledButton {
+    background-color: rgba(133, 213, 236, .5);
+    cursor: not-allowed;
+}
+
+.button:active {
+    background-color: rgba(42, 44, 54, 255);
+    color: rgba(133, 213, 236, 255);
+}
+
+.max_start_wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.normal_text_view{
+    color: rgba(133, 213, 236, 255);
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 36px
+}
+
+.max_start_wrapper div:last-child > input{
+    line-height: 36px;
+    border: solid rgba(133, 213, 236, 255) 2px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.max_start_wrapper div:last-child > input:focus{
+    outline: none;
+}
+
+.max_start_wrapper div:last-child > input.input_error {
+    background-color: rgba(239,156,174,255);
+    border: solid crimson 2px;
+    border-radius: 5px;
+}
