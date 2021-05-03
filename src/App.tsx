@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Counter} from "./Counter";
-import CounterSettingsContainer from './CounterSettingsContainer';
+import {CounterSettingsContainer} from "./CounterSettingsContainer";
 
 
 function App() {

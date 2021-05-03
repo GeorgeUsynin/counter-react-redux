@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from "react";
+import {debuglog} from "util";
 
 type CounterSettingsScreenPropsType = {
     startValue: number
@@ -10,7 +11,10 @@ type CounterSettingsScreenPropsType = {
 
 export function CounterSettingsScreen(props: CounterSettingsScreenPropsType) {
 
-    const changeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => props.changeMaxValue(parseInt(e.currentTarget.value))
+    const changeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        props.changeMaxValue(parseInt(e.currentTarget.value))
+    }
+
 
     const changeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => props.changeStartValue(parseInt(e.currentTarget.value))
 

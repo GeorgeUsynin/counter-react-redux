@@ -13,7 +13,7 @@ type changeStartValueACType = {
     }
 }
 
-export const changeStartValueAC = (startValue: number) => {
+export const changeStartValueAC = (startValue: number): changeStartValueACType => {
     return {
         type: ACTIONS_TYPES.CHANGE_START_VALUE,
         payload: {
@@ -29,7 +29,7 @@ type changeMaxValueACType = {
     }
 }
 
-export const changeMaxValueAC = (maxValue: number) => {
+export const changeMaxValueAC = (maxValue: number): changeMaxValueACType => {
     return {
         type: ACTIONS_TYPES.CHANGE_MAX_VALUE,
         payload: {
@@ -45,7 +45,7 @@ type setValuesACType = {
     }
 }
 
-export const setValuesAC = (startValue: number) => {
+export const setValuesAC = (startValue: number): setValuesACType => {
     return {
         type: ACTIONS_TYPES.SET_VALUES,
         payload: {
