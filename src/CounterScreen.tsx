@@ -1,16 +1,16 @@
 import React from "react";
-
-type CounterScreenPropsType = {
-    currentValue: number
-    maxValue: number
-    startValue: number
-    flag: boolean
-}
-
+import {CounterScreenPropsType} from "./CounterScreenContainer";
 
 export function CounterScreen(props: CounterScreenPropsType) {
 
-    const conditionError: boolean = props.startValue < 0 || props.maxValue < 0 || props.maxValue <= props.startValue
+    const {
+        startValue,
+        maxValue,
+        currentValue,
+        incResetDisabledButtonFlag
+    } = props.counter
+
+    const conditionError: boolean = startValue < 0 || maxValue < 0 || maxValue <= startValue
 
     const showScreen = (flag: boolean) => {
         if (conditionError){
@@ -20,14 +20,14 @@ export function CounterScreen(props: CounterScreenPropsType) {
             return <div className={'normal_text_view'}>enter values and press "set"</div>
         }
         else {
-            return <div className={`counter_value ${props.currentValue === props.maxValue ? 'maxCount_text_view' : ''}`}>{props.currentValue}</div>
+            return <div className={`counter_value ${currentValue === maxValue ? 'maxCount_text_view' : ''}`}>{currentValue}</div>
         }
     }
 
 
     return (
         <div className='screen'>
-            {showScreen(props.flag)}
+            {showScreen(incResetDisabledButtonFlag)}
         </div>
     )
 }

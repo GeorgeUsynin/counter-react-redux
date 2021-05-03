@@ -1,28 +1,32 @@
 import React from "react";
 import {Button} from "./Button";
+import {CounterButtonsPropsType} from "./CounterButtonsContainer";
 
-type CounterButtonsPropsType = {
-    incrementCounter: () => void
-    resetCounter: () => void
-    currentValue: number
-    maxValue: number
-    startValue: number
-    flag: boolean
-}
 
 export function CounterButtons(props: CounterButtonsPropsType) {
+
+    const {
+        incResetDisabledButtonFlag,
+        maxValue,
+        currentValue,
+        startValue
+    } = props.counter
+
+    const resetCounter = () => {
+        props.resetCounter(startValue)
+    }
 
     return (
         <div className='buttons_wrapper'>
             <Button
                 name={'Inc'}
-                disabled={props.flag || props.currentValue === props.maxValue}
+                disabled={incResetDisabledButtonFlag || currentValue === maxValue}
                 callback={props.incrementCounter}
             />
             <Button
                 name={'Reset'}
-                disabled={props.flag || props.currentValue === props.startValue}
-                callback={props.resetCounter}
+                disabled={incResetDisabledButtonFlag || currentValue === startValue}
+                callback={resetCounter}
             />
         </div>
     )
