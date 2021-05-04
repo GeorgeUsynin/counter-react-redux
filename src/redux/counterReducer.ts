@@ -1,4 +1,4 @@
-export enum ACTIONS_TYPES {
+export enum ACTIONS_TYPES  {
     CHANGE_START_VALUE = 'Counter/CHANGE_START_VALUE',
     CHANGE_MAX_VALUE = 'Counter/CHANGE_MAX_VALUE',
     SET_VALUES = 'Counter/SET_VALUES',
@@ -58,7 +58,7 @@ type incrementValueACType = {
     type: ACTIONS_TYPES.INCREMENT_VALUE
 }
 
-export const incrementValueAC = () => {
+export const incrementValueAC = (): incrementValueACType => {
     return {
         type: ACTIONS_TYPES.INCREMENT_VALUE
     }
@@ -71,7 +71,7 @@ type resetCounterACType = {
     }
 }
 
-export const resetCounterAC = (startValue: number) => {
+export const resetCounterAC = (startValue: number): resetCounterACType => {
     return {
         type: ACTIONS_TYPES.RESET_COUNTER,
         payload: {
@@ -88,7 +88,7 @@ export type InitialCounterStateType = {
     setDisabledButtonFlag: boolean
 }
 
-const initialState: InitialCounterStateType = {
+export const initialState: InitialCounterStateType = {
     startValue: 0,
     maxValue: 5,
     currentValue: 0,

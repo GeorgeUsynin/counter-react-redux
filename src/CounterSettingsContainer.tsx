@@ -1,17 +1,38 @@
 import {useDispatch, useSelector} from "react-redux";
 import {CounterSettings} from "./CounterSettings";
-import {ActionCreatorsType, changeMaxValueAC, changeStartValueAC, setValuesAC} from "./redux/counterReducer";
+import {
+    ActionCreatorsType,
+    changeMaxValueAC,
+    changeStartValueAC,
+    InitialCounterStateType,
+    setValuesAC
+} from "./redux/counterReducer";
 import {Dispatch} from "redux";
 import React from "react";
 import {selectAllValues} from "./redux/selectors";
+import {IGlobalState} from "./redux/redux-store";
 
 
 export const CounterSettingsContainer = () => {
 
-    const {startValue, maxValue, setDisabledButtonFlag} = useSelector(selectAllValues)
+    //useSelector
 
+    // const {
+    //     startValue,
+    //     maxValue,
+    //     setDisabledButtonFlag
+    // } = useSelector<IGlobalState, InitialCounterStateType>(state => state.counter)
+    const {
+            startValue,
+            maxValue,
+            setDisabledButtonFlag
+        } = useSelector(selectAllValues)
+
+
+    //useDispatch
     const dispatch = useDispatch<Dispatch<ActionCreatorsType>>()
 
+    //handlers
     const setCounterSettings = () => {
         dispatch(setValuesAC(startValue))
     }
@@ -33,7 +54,7 @@ export const CounterSettingsContainer = () => {
                 setCounterSettings={setCounterSettings}
                 changeMaxValue={changeMaxValue}
                 changeStartValue={changeStartValue}
-                />
+            />
         </React.Fragment>
     )
 }
