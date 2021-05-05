@@ -1,5 +1,12 @@
 import React from "react";
-import {CounterScreenPropsType} from "./CounterScreenContainer";
+import {} from "./CounterScreenContainer";
+
+type CounterScreenPropsType =  {
+    startValue: number
+    maxValue: number
+    currentValue: number
+    incResetDisabledButtonFlag: boolean
+}
 
 export function CounterScreen(props: CounterScreenPropsType) {
 
@@ -8,7 +15,7 @@ export function CounterScreen(props: CounterScreenPropsType) {
         maxValue,
         currentValue,
         incResetDisabledButtonFlag
-    } = props.counter
+    } = props
 
     const conditionError: boolean = startValue < 0 || maxValue < 0 || maxValue <= startValue
 

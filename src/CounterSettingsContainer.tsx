@@ -26,19 +26,16 @@ export const CounterSettingsContainer = () => {
     //useDispatch
     const dispatch = useDispatch<Dispatch<ActionCreatorsType>>()
 
-    //handlers
-
+    //dispatch handlers
     const setCounterSettings = useCallback((startValue: number)=>{
         dispatch(setValuesAC(startValue))
     },[startValue])
 
     const changeMaxValue = useCallback((maxValue: number)=>{
-        debugger
         dispatch(changeMaxValueAC(maxValue))
     },[maxValue])
 
     const changeStartValue = useCallback((startValue: number)=> {
-        debugger
         dispatch(changeStartValueAC(startValue))
     },[startValue])
 
