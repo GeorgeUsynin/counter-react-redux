@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useCallback} from "react";
 import {CounterSettingsScreen} from "./CounterSettingsScreen";
 import {Button} from "./Button";
-import {changeMaxValueAC} from "./redux/counterReducer";
-
+import {changeStartValueAC} from "./redux/counterReducer";
 
 
 type CounterSettingsPropsType = {
@@ -10,12 +9,12 @@ type CounterSettingsPropsType = {
     maxValue: number
     setDisabledButtonFlag: boolean
     setCounterSettings: (startValue: number) => void
-    changeMaxValue : (maxValue: number) => void,
-    changeStartValue : (startValue: number) => void,
+    changeMaxValue: (maxValue: number) => void,
+    changeStartValue: (startValue: number) => void,
 
 }
 
-export function CounterSettings(props: CounterSettingsPropsType) {
+function CounterSettingsMemo(props: CounterSettingsPropsType) {
 
     const {
         setDisabledButtonFlag,
@@ -29,9 +28,10 @@ export function CounterSettings(props: CounterSettingsPropsType) {
 
     const conditionError: boolean = setDisabledButtonFlag || startValue < 0 || maxValue < 0 || maxValue <= startValue
 
-    const setCounterSettingsHandler = () => {
+
+    const setCounterSettingsHandler = useCallback(() => {
         setCounterSettings(startValue)
-    }
+    }, [startValue])
 
     return (
         <div className='counter_wrapper'>
@@ -49,4 +49,8 @@ export function CounterSettings(props: CounterSettingsPropsType) {
         </div>
     )
 }
+
+const CounterSettings = React.memo(CounterSettingsMemo)
+
+export default CounterSettings
 

@@ -1,16 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
-import {CounterSettings} from "./CounterSettings";
-import {
-    ActionCreatorsType,
-    changeMaxValueAC,
-    changeStartValueAC,
-    InitialCounterStateType,
-    setValuesAC
-} from "./redux/counterReducer";
+
+import {ActionCreatorsType, changeMaxValueAC, changeStartValueAC, setValuesAC} from "./redux/counterReducer";
 import {Dispatch} from "redux";
-import React from "react";
+import React, {useCallback} from "react";
 import {selectAllValues} from "./redux/selectors";
-import {IGlobalState} from "./redux/redux-store";
+import CounterSettings from "./CounterSettings";
 
 
 export const CounterSettingsContainer = () => {
@@ -33,17 +27,21 @@ export const CounterSettingsContainer = () => {
     const dispatch = useDispatch<Dispatch<ActionCreatorsType>>()
 
     //handlers
-    const setCounterSettings = () => {
+
+    const setCounterSettings = useCallback((startValue: number)=>{
         dispatch(setValuesAC(startValue))
-    }
+    },[startValue])
 
-    const changeMaxValue = (maxValue: number) => {
+    const changeMaxValue = useCallback((maxValue: number)=>{
+        debugger
         dispatch(changeMaxValueAC(maxValue))
-    }
+    },[maxValue])
 
-    const changeStartValue = (startValue: number) => {
+    const changeStartValue = useCallback((startValue: number)=> {
+        debugger
         dispatch(changeStartValueAC(startValue))
-    }
+    },[startValue])
+
 
     return (
         <React.Fragment>
