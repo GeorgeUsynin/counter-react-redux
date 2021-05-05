@@ -10,13 +10,16 @@ let preloadedStartValue, preloadedMaxValue
 const persistedStartValue = localStorage.getItem('start_value')
 if (persistedStartValue) {
     preloadedStartValue = JSON.parse(persistedStartValue)
+} else {
+    preloadedStartValue = 0
 }
 
 const persistedMaxValue = localStorage.getItem('max_value')
 if (persistedMaxValue) {
     preloadedMaxValue = JSON.parse(persistedMaxValue)
+} else {
+    preloadedMaxValue = 5
 }
-
 
 export const store = createStore(RootReducer, {
     counter: {
@@ -26,7 +29,6 @@ export const store = createStore(RootReducer, {
         currentValue: preloadedStartValue
     }
 })
-
 
 store.subscribe(() => {
     localStorage.setItem('start_value', JSON.stringify(store.getState().counter.startValue))
