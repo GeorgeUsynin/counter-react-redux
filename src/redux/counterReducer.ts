@@ -1,9 +1,10 @@
-export enum ACTIONS_TYPES  {
+export enum ACTIONS_TYPES {
     CHANGE_START_VALUE = 'Counter/CHANGE_START_VALUE',
     CHANGE_MAX_VALUE = 'Counter/CHANGE_MAX_VALUE',
     SET_VALUES = 'Counter/SET_VALUES',
     INCREMENT_VALUE = 'Counter/INCREMENT_VALUE',
-    RESET_COUNTER = 'Counter/RESET_COUNTER'
+    RESET_COUNTER = 'Counter/RESET_COUNTER',
+    SET_VALUES_FROM_LOCALSTORAGE = 'SET_VALUES_FROM_LOCALSTORAGE'
 }
 
 type changeStartValueACType = {
@@ -80,6 +81,25 @@ export const resetCounterAC = (startValue: number): resetCounterACType => {
     }
 }
 
+type setValuesFromLocalStorageACType = {
+    type: ACTIONS_TYPES.SET_VALUES_FROM_LOCALSTORAGE
+    payload: {
+        startValue: number
+        maxValue: number
+    }
+}
+
+export const setValuesFromLocalStorageAC = (startValue: number, maxValue: number): setValuesFromLocalStorageACType => {
+    return {
+        type: ACTIONS_TYPES.SET_VALUES_FROM_LOCALSTORAGE,
+        payload: {
+            startValue,
+            maxValue
+        }
+    }
+}
+
+
 export type InitialCounterStateType = {
     startValue: number
     maxValue: number
@@ -129,6 +149,12 @@ export const counterReducer = (state: InitialCounterStateType = initialState, ac
                 ...state,
                 currentValue: action.payload.startValue
             }
+        case ACTIONS_TYPES.SET_VALUES_FROM_LOCALSTORAGE:
+            return {
+                ...state,
+                startValue: action.payload.startValue,
+                maxValue: action.payload.maxValue
+            }
         default:
             return state
     }
@@ -140,3 +166,4 @@ export type ActionCreatorsType =
     | setValuesACType
     | incrementValueACType
     | resetCounterACType
+    | setValuesFromLocalStorageACType

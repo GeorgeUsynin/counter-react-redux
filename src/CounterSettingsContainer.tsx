@@ -1,8 +1,14 @@
 import {useDispatch, useSelector} from "react-redux";
 
-import {ActionCreatorsType, changeMaxValueAC, changeStartValueAC, setValuesAC} from "./redux/counterReducer";
+import {
+    ActionCreatorsType,
+    changeMaxValueAC,
+    changeStartValueAC,
+    setValuesAC,
+    setValuesFromLocalStorageAC
+} from "./redux/counterReducer";
 import {Dispatch} from "redux";
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect} from "react";
 import {selectAllValues} from "./redux/selectors";
 import CounterSettings from "./CounterSettings";
 
@@ -17,27 +23,36 @@ export const CounterSettingsContainer = () => {
     //     setDisabledButtonFlag
     // } = useSelector<IGlobalState, InitialCounterStateType>(state => state.counter)
     const {
-            startValue,
-            maxValue,
-            setDisabledButtonFlag
-        } = useSelector(selectAllValues)
+        startValue,
+        maxValue,
+        setDisabledButtonFlag
+    } = useSelector(selectAllValues)
 
+    useEffect(() => {
+        const localStorageStartValue = localStorage.getItem('start_value')
+        const localStorageMaxValue = localStorage.getItem('max_value')
+        if (localStorageStartValue && localStorageMaxValue) {
+            dispatch(setValuesFromLocalStorageAC(JSON.parse(localStorageStartValue), JSON.parse(localStorageMaxValue)))
+        }
+    }, [])
 
     //useDispatch
     const dispatch = useDispatch<Dispatch<ActionCreatorsType>>()
 
     //dispatch handlers
-    const setCounterSettings = useCallback((startValue: number)=>{
+    const setCounterSettings = useCallback((startValue: number) => {
         dispatch(setValuesAC(startValue))
-    },[startValue])
+    }, [startValue])
 
-    const changeMaxValue = useCallback((maxValue: number)=>{
+    const changeMaxValue = useCallback((maxValue: number) => {
         dispatch(changeMaxValueAC(maxValue))
-    },[maxValue])
+        localStorage.setItem('max_value', JSON.stringify(maxValue))
+    }, [maxValue])
 
-    const changeStartValue = useCallback((startValue: number)=> {
+    const changeStartValue = useCallback((startValue: number) => {
         dispatch(changeStartValueAC(startValue))
-    },[startValue])
+        localStorage.setItem('start_value', JSON.stringify(startValue))
+    }, [startValue])
 
 
     return (

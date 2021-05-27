@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useEffect} from "react";
 import {debuglog} from "util";
 
 type CounterSettingsScreenPropsType = {
