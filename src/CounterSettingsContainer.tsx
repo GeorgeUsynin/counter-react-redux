@@ -25,6 +25,7 @@ export const CounterSettingsContainer = () => {
     const {
         startValue,
         maxValue,
+        currentValue,
         setDisabledButtonFlag
     } = useSelector(selectAllValues)
 
@@ -36,6 +37,11 @@ export const CounterSettingsContainer = () => {
         }
     }, [])
 
+    useEffect(()=>{
+        localStorage.setItem('max_value', JSON.stringify(maxValue))
+        localStorage.setItem('start_value', JSON.stringify(startValue))
+    },[maxValue,startValue])
+
     //useDispatch
     const dispatch = useDispatch<Dispatch<ActionCreatorsType>>()
 
@@ -46,12 +52,12 @@ export const CounterSettingsContainer = () => {
 
     const changeMaxValue = useCallback((maxValue: number) => {
         dispatch(changeMaxValueAC(maxValue))
-        localStorage.setItem('max_value', JSON.stringify(maxValue))
+
     }, [maxValue])
 
     const changeStartValue = useCallback((startValue: number) => {
         dispatch(changeStartValueAC(startValue))
-        localStorage.setItem('start_value', JSON.stringify(startValue))
+
     }, [startValue])
 
 

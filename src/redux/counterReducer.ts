@@ -101,7 +101,7 @@ export const setValuesFromLocalStorageAC = (startValue: number, maxValue: number
 
 
 export type InitialCounterStateType = {
-    startValue: number
+    startValue: number 
     maxValue: number
     currentValue: number
     incResetDisabledButtonFlag: boolean
